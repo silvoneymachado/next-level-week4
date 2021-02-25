@@ -18,6 +18,7 @@
     border-radius: 5px;
     font-size: 8.5rem;
     text-align: center;
+    width: 10rem;
 }
 
 .countdownContainer > div span {
@@ -58,6 +59,22 @@
     transition: background-color 0.2s;
 }
 
-.countdownButton:hover {
+.countdownButton:not(:disabled):hover {
     background: var(--blue-dark);
+}
+
+.countdownButtonActive {
+    background: var(--white);
+    color: var(--title);
+}
+
+.countdownButtonActive:not(:disabled):hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+.countdownButton:disabled {
+    background: var(--white);
+    color: var(--text);
+    cursor: not-allowed;
 }
