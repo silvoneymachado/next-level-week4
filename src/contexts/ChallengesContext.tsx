@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState} from 'react';
+import { createContext, ReactNode, useEffect, useState} from 'react';
 import challenges from  '../../challenges.json';
 
 interface ChallengeProviderProps {
@@ -14,6 +14,7 @@ interface Challenge {
 interface ChallengeContextData {
     activeChallenge: Challenge;
     challengesCompleted: number;
+    completeChallenge: () => void;
     currentExperience: number;
     experienceToNextLevel: number;
     level: number;
@@ -33,6 +34,10 @@ export function ChallengesProvier(props: ChallengeProviderProps)  {
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+    useEffect(() => {
+        Notification.requestPermission();
+    }, [])
+
     function levelUp() {
         setLevel(level + 1);
     }
@@ -42,15 +47,43 @@ export function ChallengesProvier(props: ChallengeProviderProps)  {
         const challenge = challenges[randomChallengeIndex]
 
         setActiveChallenge(challenge);
+
+        new Audio('/notification.mp3').play();
+
+        if(Notification.permission == 'granted'){
+            new Notification('Novo desafio 🎉', {
+                body: `Valendo ${challenge.amount}xp!`,
+            })
+        }
     }
 
     function resetChallenge() { 
         setActiveChallenge(null);
     }
 
+    function completeChallenge(){
+        if(!activeChallenge){
+            return;
+        }
+
+        const { amount } = activeChallenge;
+
+        let finalExperience = currentExperience + amount;
+
+        if(finalExperience >= experienceToNextLevel) {
+            finalExperience = finalExperience - experienceToNextLevel;
+            levelUp();
+        }
+
+        setCurrentExperience(finalExperience);
+        setActiveChallenge(null);
+        setChallengesCompleted(challengesCompleted + 1);
+    }
+
     return (
         <ChallengesContext.Provider value={{
             activeChallenge,
+            completeChallenge,
             challengesCompleted,
             currentExperience,
             experienceToNextLevel,

@@ -23,3 +23,5 @@ export function ExperienceBar() {
 
 // #rumoaoproximonivel
 // #jornadainfinita
+// #focopraticagrupo
+// #neverstoplearning
