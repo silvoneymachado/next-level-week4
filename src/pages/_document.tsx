@@ -12,6 +12,9 @@ export default class MyDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
+                    <footer style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <div>Some icons are madded by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry" target='_blank'>Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon" target='_blank' >www.flaticon.com</a></div>
+                    </footer>
                 </body>
             </Html>
         )

@@ -1,0 +1,11 @@
+## Next features:
+- [ ] Documentation
+  - [ ] Gif with demonstration
+  - [ ] Readme with prints and installation guide
+- [ ] Media queries for mobile
+- [ ] Pwa function
+- [ ] Change color scheme
+  - [ ] Dark mode and more
+- [ ] Landing page
+- [ ] Configuration functionalities
+- [ ] See figma project
