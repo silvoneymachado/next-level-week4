@@ -8,10 +8,11 @@
 }
 
 .container section {
-    flex: 1;
+    /* flex: 1; */
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6.25rem;
+    grid-template-columns: 1fr;
+    gap: 6rem;
     align-content: center;
+    margin-top: 3rem;
 }
